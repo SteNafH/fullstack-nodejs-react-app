@@ -38,7 +38,7 @@ class DBService {
         })
     }
 
-    public query = async <T extends OkPacket | RowDataPacket[] | OkPacket[]>(sql: string, values?: any[]) => {
+    public query = <T extends OkPacket | RowDataPacket[] | OkPacket[]>(sql: string, values?: any[]): Promise<T> => {
         return new Promise<T>((resolve, reject) => {
             if (!this.dbInstance) {
                 reject('Database not initialized');
