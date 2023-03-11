@@ -1,0 +1,13 @@
+# IDE setting directories
+.idea
+.vscode
+*.iml
+
+# Build directory
+build
+
+# Dependency directories
+node_modules
+
+# Environmental variables
+.env
