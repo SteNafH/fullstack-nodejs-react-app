@@ -5,26 +5,22 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "checkJs": true,
-    "declaration": true,
-    "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "jsx": "react-jsxdev",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "strict": true,
     "outDir": "dist",
-    "module": "ESNext",
+    "module": "CommonJS",
     "moduleResolution": "Node",
     "skipLibCheck": true,
-    "sourceMap": true,
-    "target": "ES2017"
+    "target": "ES6"
   },
-  "include": ["src/**/*", "types/*", "server.ts", "node_modules/vite/types/*"],
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "include": [
+    "src",
+  ],
 }
