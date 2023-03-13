@@ -3,12 +3,13 @@
     "target": "ES6",
     "module": "CommonJS",
     "lib": [
-      "ES6",
-      "DOM"
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
     ],
     "allowJs": true,
-    "outDir": "build",
-    "rootDir": "src",
+    "outDir": "dist",
+    "moduleResolution": "Node",
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
@@ -17,4 +18,7 @@
   "include": [
     "src",
   ],
+  "exclude": [
+    "src/views"
+  ]
 }

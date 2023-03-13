@@ -11,6 +11,7 @@ const version = "v1";
 RoutesLoader.initRoutes(app, version);
 
 const port = Number(Config.PORT);
+
 app.listen(port, () => console.log(`
   ==================================
   🚀 Server running on port ${port}!🚀
