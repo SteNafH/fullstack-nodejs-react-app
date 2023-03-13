@@ -1,9 +1,7 @@
 {
-  "name": "vite-typescript-ssr-react",
-  "version": "1.0.1",
+  "name": "full-stack",
+  "version": "1.0.0",
   "description": "",
-  "author": "Stefan Hilhorst",
-  "license": "MIT",
   "scripts": {
     "dev:server": "npm run build:client && nodemon src/index.ts",
     "dev:client": "vite",
@@ -12,15 +10,19 @@
     "build:server": "rimraf dist && tsc && npm run build:client",
     "start": "npm run build && node dist/index.js"
   },
+  "keywords": [],
+  "author": "Stefan Hilhorst",
+  "license": "ISC",
   "dependencies": {
     "compression": "1.7.4",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "4.18.2",
+    "mysql2": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.6.1"
+    "react-router-dom": "^5.1.2"
   },
   "devDependencies": {
     "@types/compression": "1.7.2",
