@@ -9,7 +9,8 @@ export default defineConfig({
     format: 'cjs',
   },
   build: {
-    emptyOutDir: false,
+    emptyOutDir: true,
+    outDir: "../../dist/views"
   },
-  root: "",
+  root: "src/views",
 });

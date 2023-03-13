@@ -15,6 +15,7 @@
     ],
     "strict": true,
     "outDir": "dist",
+    "rootDir": "src",
     "module": "CommonJS",
     "moduleResolution": "Node",
     "skipLibCheck": true,
@@ -23,4 +24,7 @@
   "include": [
     "src",
   ],
+  "exclude": [
+    "src/views"
+  ]
 }
