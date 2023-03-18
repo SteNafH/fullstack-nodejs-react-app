@@ -3,13 +3,20 @@ import ProductModel, { Product } from '../models/product.model';
 import { randomUUID } from 'crypto';
 
 class ProductController {
+    private productModel: ProductModel;
+
+    constructor() {
+        this.productModel = new ProductModel();
+    }
+
+
     public getAllProducts = async (req: Request, res: Response) => {
-        const products = await ProductModel.findAll();
+        const products = await this.productModel.findAll();
         res.status(200).json(products);
     }
 
     public getProductById = async (req: Request, res: Response) => {
-        const product = await ProductModel.find({ id: req.params.id });
+        const product = await this.productModel.find({ id: req.params.id });
         res.status(200).json(product);
     }
 
@@ -17,14 +24,14 @@ class ProductController {
         const product = req.body as Product;
         product.id = randomUUID();
 
-        const response = await ProductModel.create(product);
+        const response = await this.productModel.create(product);
         res.status(201).json(response);
     }
 
     public deleteProduct = async (req: Request, res: Response) => {
-        const response = await ProductModel.delete(req.params.id);
+        const response = await this.productModel.delete(req.params.id);
         res.status(200).json(response);
     }
 }
 
-export default new ProductController();
+export default ProductController;

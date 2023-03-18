@@ -1,17 +1,14 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
+
+import "./scss/main.scss";
 import App from "./App";
 
-const container = document.getElementById("app");
-
-const FullApp = () => (
+ReactDOM.createRoot(document.getElementById("app")!).render(
     <React.StrictMode>
         <BrowserRouter>
-            <App/>
+            <App />
         </BrowserRouter>
     </React.StrictMode>
 );
-
-const root = createRoot(container!);
-root.render(<FullApp/>);
