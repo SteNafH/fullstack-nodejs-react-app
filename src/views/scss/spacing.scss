@@ -1,0 +1,30 @@
+$spacer: 1rem;
+$spacing: (
+    0: 0,
+    1: 0.25,
+    2: 0.5,
+    3: 1,
+    4: 1.5,
+    5: 3,
+);
+
+@each $size, $value in $spacing {
+    //Margin utilities
+    .m-#{$size} { margin: $spacer * $value; }
+    .mt-#{$size}, .my-#{$size} { margin-top: $spacer * $value; }
+    .mb-#{$size}, .my-#{$size} { margin-bottom: $spacer * $value; }
+    .ml-#{$size}, .mx-#{$size} { margin-left: $spacer * $value; }
+    .mr-#{$size}, .mx-#{$size} { margin-right: $spacer * $value; }
+
+    //Padding utilities
+    .p-#{$size} { padding: $spacer * $value; }
+    .pt-#{$size}, .py-#{$size} { padding-top: $spacer * $value; }
+    .pb-#{$size}, .py-#{$size} { padding-bottom: $spacer * $value; }
+    .pl-#{$size}, .px-#{$size} { padding-left: $spacer * $value; }
+    .pr-#{$size}, .px-#{$size} { padding-right: $spacer * $value; }
+
+    //Gap utilities
+    .gap-#{$size} { gap: $spacer * $value; }
+    .gap-y-#{$size} { column-gap: $spacer * $value; }
+    .gap-x-#{$size} { row-gap: $spacer * $value; }
+}

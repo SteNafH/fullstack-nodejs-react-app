@@ -1,0 +1,11 @@
+$colors: (
+    "error": #FDDDDC,
+);
+
+@each $name, $color in $colors {
+    .text-#{$name} { color: $color; }
+
+    .bg-#{$name} { background-color: $color; }
+
+    .b-#{$name} { border-color: $color; }
+}

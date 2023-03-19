@@ -1,11 +1,13 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks';
+import { useError } from '../../hooks/useError';
 
 function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const auth = useAuth();
+    const error = useError();
 
     const from = location.state?.from?.pathname || "/";
 
@@ -20,11 +22,15 @@ function Login() {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: new URLSearchParams(formData)
-        }).then(response => response.json());
+        })
+            .then(response => response.json())
 
-        auth.signin(response.data.token, () => {
-            navigate(from, { replace: true });
-        });
+        if (response.status === 'success')
+            auth.signin(response.data.token, () => {
+                navigate(from, { replace: true });
+            });
+        else
+            error.addError(response.message);
     }
 
     return (
@@ -32,10 +38,10 @@ function Login() {
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Username: <input name="email" type="text"/>
+                    Email: <input name="email" type="text" required/>
                 </label>
                 <label>
-                    Password: <input name="password" type="password"/>
+                    Password: <input name="password" type="password" required/>
                 </label>
                 <button type="submit">Login</button>
             </form>

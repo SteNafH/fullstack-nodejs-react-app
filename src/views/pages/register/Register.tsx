@@ -34,10 +34,10 @@ function Register() {
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <label>
-                    Username: <input name="email" type="text"/>
+                    Email: <input name="email" type="text" required/>
                 </label>
                 <label>
-                    Password: <input name="password" type="password"/>
+                    Password: <input name="password" type="password" required/>
                 </label>
                 <button type="submit">Register</button>
             </form>

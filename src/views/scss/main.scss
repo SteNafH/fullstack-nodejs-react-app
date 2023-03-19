@@ -1,1 +1,23 @@
+@import 'colors';
+@import 'flex';
+@import 'spacing';
+@import 'text';
+@import 'border';
+@import 'utilities';
 
+:root {
+  font-family: sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+a:visited{
+  color:blue;
+}

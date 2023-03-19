@@ -6,7 +6,7 @@ interface AuthContextType {
     signout: (callback: VoidFunction) => void;
 }
 
-export const AuthContext = React.createContext<AuthContextType>(null!);
+export const AuthContext = React.createContext<AuthContextType>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [token, setToken] = React.useState<string>(localStorage.getItem('jwtToken'));

@@ -7,7 +7,7 @@ function Layout() {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <>
             <nav>
                 <ul>
                     <li>
@@ -28,7 +28,7 @@ function Layout() {
             <main>
                 <Outlet/>
             </main>
-        </div>
+        </>
     );
 }
 

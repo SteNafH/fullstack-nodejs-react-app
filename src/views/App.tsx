@@ -11,27 +11,30 @@ import Register from './pages/register/Register';
 import NoMatch from './pages/nomatch/NoMatch';
 import Layout from './pages/Layout';
 import Products from './pages/products/Products';
+import { ErrorProvider } from './contexts/ErrorContext';
 
 function App() {
     return (
         <AuthProvider>
-            <Routes>
-                <Route path="login" element={<Login/>}/>
-                <Route path="register" element={<Register/>}/>
+            <ErrorProvider>
+                <Routes>
+                    <Route path="login" element={<Login/>}/>
+                    <Route path="register" element={<Register/>}/>
 
-                <Route path="/" element={<Layout/>}>
-                    <Route
-                        index
-                        element={
-                            <RequireAuth>
-                                <Products/>
-                            </RequireAuth>
-                        }
-                    />
-                </Route>
+                    <Route path="/" element={<Layout/>}>
+                        <Route
+                            index
+                            element={
+                                <RequireAuth>
+                                    <Products/>
+                                </RequireAuth>
+                            }
+                        />
+                    </Route>
 
-                <Route path="*" element={<NoMatch/>}/>
-            </Routes>
+                    <Route path="*" element={<NoMatch/>}/>
+                </Routes>
+            </ErrorProvider>
         </AuthProvider>
     );
 }
