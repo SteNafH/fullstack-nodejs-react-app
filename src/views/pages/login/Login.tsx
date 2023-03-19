@@ -37,12 +37,12 @@ function Login() {
         <>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <label>
-                    Email: <input name="email" type="text" required/>
-                </label>
-                <label>
-                    Password: <input name="password" type="password" required/>
-                </label>
+                <label htmlFor={"email"}>Email:</label>
+                <input name={"email"} id={"email"} type={"text"} required/>
+
+                <label htmlFor={"password"}>Password: </label>
+                <input name={"password"} id={"password"} type={"password"} required/>
+
                 <button type="submit">Login</button>
             </form>
 

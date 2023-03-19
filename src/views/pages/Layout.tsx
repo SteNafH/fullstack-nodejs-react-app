@@ -9,20 +9,14 @@ function Layout() {
     return (
         <>
             <nav>
-                <ul>
-                    <li>
-                        <Link to="/">Products</Link>
-                    </li>
-                    <li>
-                        <button
-                            onClick={() => {
-                                auth.signout(() => navigate('/'));
-                            }}
-                        >
-                            Sign out
-                        </button>
-                    </li>
-                </ul>
+                <Link to="/">Products</Link>
+                <button
+                    onClick={() => {
+                        auth.signout(() => navigate('/'));
+                    }}
+                >
+                    Sign out
+                </button>
             </nav>
 
             <main>

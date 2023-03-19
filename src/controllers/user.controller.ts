@@ -17,7 +17,10 @@ class UserController {
 
         const existingUser = await this.userModel.find({ email: email });
         if (existingUser) {
-            return res.status(409).end();
+            return res.status(409).json({
+                status: "error",
+                message: "Email already exists",
+            });
         }
 
         const salt = bcrypt.genSaltSync(8);
@@ -25,7 +28,9 @@ class UserController {
 
         await this.userModel.create({ id: randomUUID(), email: email, password: hashedPassword});
 
-        return res.status(200).end();
+        return res.status(200).json({
+            status: 'success',
+        });
     }
 
     public userLogin = async (req: Request, res: Response) => {
