@@ -9,28 +9,45 @@ class ProductController {
         this.productModel = new ProductModel();
     }
 
-
     public getAllProducts = async (req: Request, res: Response) => {
         const products = await this.productModel.findAll();
-        res.status(200).json(products);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                products: products,
+            }
+        });
     }
 
     public getProductById = async (req: Request, res: Response) => {
         const product = await this.productModel.find({ id: req.params.id });
-        res.status(200).json(product);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                product: product,
+            }
+        });
     }
 
     public createProduct = async (req: Request, res: Response) => {
         const product = req.body as Product;
         product.id = randomUUID();
 
-        const response = await this.productModel.create(product);
-        res.status(201).json(response);
+        await this.productModel.create(product);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                product: product,
+            },
+        });
     }
 
     public deleteProduct = async (req: Request, res: Response) => {
-        const response = await this.productModel.delete(req.params.id);
-        res.status(200).json(response);
+        await this.productModel.delete(req.params.id);
+        res.status(200).json({
+            status: 'success',
+            data: null,
+        });
     }
 }
 

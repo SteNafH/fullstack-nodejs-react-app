@@ -10,6 +10,7 @@ class ExpressLoader {
         app.use(express.static(path.resolve(__dirname, '../../dist/views')));
 
         app.use(express.json());
+        app.use(express.urlencoded({ extended: true }));
 
         return app;
     }
