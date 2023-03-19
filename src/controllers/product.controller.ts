@@ -3,28 +3,52 @@ import ProductModel, { Product } from '../models/product.model';
 import { randomUUID } from 'crypto';
 
 class ProductController {
+    private productModel: ProductModel;
+
+    constructor() {
+        this.productModel = new ProductModel();
+    }
+
     public getAllProducts = async (req: Request, res: Response) => {
-        const products = await ProductModel.findAll();
-        res.status(200).json(products);
+        const products = await this.productModel.findAll();
+        res.status(200).json({
+            status: 'success',
+            data: {
+                products: products,
+            }
+        });
     }
 
     public getProductById = async (req: Request, res: Response) => {
-        const product = await ProductModel.find({ id: req.params.id });
-        res.status(200).json(product);
+        const product = await this.productModel.find({ id: req.params.id });
+        res.status(200).json({
+            status: 'success',
+            data: {
+                product: product,
+            }
+        });
     }
 
     public createProduct = async (req: Request, res: Response) => {
         const product = req.body as Product;
         product.id = randomUUID();
 
-        const response = await ProductModel.create(product);
-        res.status(201).json(response);
+        await this.productModel.create(product);
+        res.status(200).json({
+            status: 'success',
+            data: {
+                product: product,
+            },
+        });
     }
 
     public deleteProduct = async (req: Request, res: Response) => {
-        const response = await ProductModel.delete(req.params.id);
-        res.status(200).json(response);
+        await this.productModel.delete(req.params.id);
+        res.status(200).json({
+            status: 'success',
+            data: null,
+        });
     }
 }
 
-export default new ProductController();
+export default ProductController;

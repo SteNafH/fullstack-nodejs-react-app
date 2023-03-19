@@ -1,3 +1,47 @@
-body {
-    background-color: #444444;
+@import 'colors';
+@import 'flex';
+@import 'spacing';
+@import 'text';
+@import 'border';
+@import 'utilities';
+
+:root {
+  font-family: sans-serif;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+a:visited{
+  color:blue;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+table, td, th {
+  border: 1px solid;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
 }

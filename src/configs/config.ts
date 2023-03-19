@@ -11,6 +11,8 @@ const Config = {
     DB_PASS: process.env.DB_PASS || '',
     DB_DATABASE: process.env.DB_DATABASE || '',
     DB_PORT: Number(process.env.DB_PORT) || 3306,
+
+    SECRET_JWT: process.env.SECRET_JWT || '',
 }
 
 export default Config;

@@ -54,4 +54,4 @@ class ProductModel {
     }
 }
 
-export default new ProductModel();
+export default ProductModel;

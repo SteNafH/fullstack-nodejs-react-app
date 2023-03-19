@@ -1,20 +1,36 @@
 import DBService from '../db/db-service';
-import { multipleFilterSet } from '../utils/common.utils';
 import tableNames from '../utils/tableNames.utils';
+import { multipleFilterSet } from '../utils/common.utils';
+import { OkPacket, RowDataPacket } from 'mysql2';
+
+export interface User {
+    id: string;
+    email: string;
+    password: string;
+}
+
+interface UserPacket extends User, RowDataPacket {
+}
 
 class UserModel {
-    public findAll = async (params?: object) => {
-        let sql = `SELECT * FROM ${tableNames.Users}`;
-
-        if (typeof params !== 'object' || !Object.keys(params).length) {
-            return await DBService.query(sql);
-        }
-
+    public find = async (params: object): Promise<User> => {
         const { filterSet, filterValues } = multipleFilterSet(params);
-        sql += ` WHERE ${filterSet}`;
+        const sql = `SELECT *
+                     FROM ${tableNames.Users}
+                     WHERE ${filterSet} LIMIT 1`;
 
-        return await DBService.query(sql, [...filterValues]);
+        const users = await DBService.query<UserPacket[]>(sql, [...filterValues]);
+        return users[0];
+    }
+
+    public create = async (user: User): Promise<string> => {
+        const sql = `INSERT INTO ${tableNames.Users}
+                         (id, email, password)
+                     VALUES (?, ?, ?)`;
+
+        await DBService.query<OkPacket>(sql, [user.id, user.email, user.password]);
+        return user.id;
     }
 }
 
-export default new UserModel();
+export default UserModel;
