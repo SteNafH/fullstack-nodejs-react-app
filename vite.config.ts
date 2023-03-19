@@ -14,9 +14,6 @@ export default defineConfig({
         }
     },
   },
-  ssr: {
-    format: 'cjs',
-  },
   build: {
     emptyOutDir: true,
     outDir: "../../dist/views"

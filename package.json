@@ -1,7 +1,7 @@
 {
-  "name": "full-stack",
+  "name": "full-stack-nodejs-react-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "A full-stack NodeJs and React project",
   "scripts": {
     "dev:server": "npm run build:client && nodemon src/index.ts",
     "dev:client": "vite",
@@ -11,9 +11,13 @@
     "build:server": "rimraf dist && tsc && npm run build:client",
     "start": "npm run build && node dist/index.js"
   },
-  "keywords": [],
+  "keywords": [
+    "TypeScript",
+    "NodeJs",
+    "ReactJs"
+  ],
   "author": "Stefan Hilhorst",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
     "compression": "1.7.4",
