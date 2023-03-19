@@ -12,10 +12,11 @@ RoutesLoader.initRoutes(app, version);
 
 const port = Number(Config.PORT);
 
-app.listen(port, () => console.log(`
-  ==================================
-  🚀 Server running on port ${port}!🚀
-  ==================================
-`));
+if (Config.NODE_ENV !== 'test')
+    app.listen(port, () => console.log(`
+      ==================================
+      🚀 Server running on port ${port}!🚀
+      ==================================
+    `));
 
 export default app;

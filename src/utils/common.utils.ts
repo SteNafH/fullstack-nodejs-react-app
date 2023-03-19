@@ -1,8 +1,4 @@
-export function multipleColumnSet(object: object) {
-    if (typeof object !== 'object') {
-        throw new Error('Invalid input');
-    }
-
+export function multipleColumnSet(object: Record<string, any>) {
     const keys = Object.keys(object);
     const values = Object.values(object);
 
@@ -14,15 +10,16 @@ export function multipleColumnSet(object: object) {
     };
 }
 
-export function multipleFilterSet(object: object) {
-    if (typeof object !== 'object') {
-        throw new Error('Invalid input');
-    }
-
+export function multipleFilterSet(object: Record<string, any>) {
     const keys = Object.keys(object);
     const values = Object.values(object);
 
-    const filterSet = keys.map(key => `${key} = ?`).join(' AND ');
+    const filterSet = keys.map(key => {
+        if (Array.isArray(object[key]))
+            return `${key} IN (?)`;
+
+        return `${key} = ?`
+    }).join(' AND ');
 
     return {
         filterSet,

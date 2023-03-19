@@ -60,7 +60,7 @@ Here's a brief description of what each folder/file contains:
 - `src/models/`: Folder containing database models.
 - `src/routes/`: Folder containing the routes for the application.
 - `src/utils/`: Folder containing utility functions and classes.
-- `src/views`:  Folder containing files related to rendering views on the client-side.
+- `src/views/`:  Folder containing files related to rendering views on the client-side.
 
 ## Installation
 
