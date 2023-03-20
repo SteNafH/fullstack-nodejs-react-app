@@ -18,3 +18,5 @@ services:
       MYSQL_DATABASE: app
       MYSQL_USER: dev
       MYSQL_PASSWORD: dev
+    volumes:
+      - /data/mysql:/var/lib/mysql
