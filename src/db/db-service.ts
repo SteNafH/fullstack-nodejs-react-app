@@ -52,7 +52,7 @@ class DBService {
 
             this.dbInstance.query<T>(sql, values, callback);
         }).catch((err) => {
-            throw new InternalServerException('Query failed', err);
+            throw new InternalServerException('Query failed', sql);
         });
     }
 

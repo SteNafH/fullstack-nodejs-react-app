@@ -39,7 +39,7 @@ const auth = () => {
             return res.status(401).json({
                 status: 'error',
                 message: 'Invalid Web Token',
-            })
+            });
         }
     }
 }

@@ -13,6 +13,19 @@ interface UserPacket extends User, RowDataPacket {
 }
 
 class UserModel {
+    public findAll = async (params?: object): Promise<User[]> => {
+        let sql = `SELECT *
+                   FROM ${tableNames.Users}`;
+
+        if (typeof params !== 'object' || !Object.keys(params).length)
+            return await DBService.query<UserPacket[]>(sql);
+
+        const { filterSet, filterValues } = multipleFilterSet(params);
+        sql += ` WHERE ${filterSet}`;
+
+        return await DBService.query<UserPacket[]>(sql, [...filterValues]);
+    }
+
     public find = async (params: object): Promise<User> => {
         const { filterSet, filterValues } = multipleFilterSet(params);
         const sql = `SELECT *
@@ -30,6 +43,13 @@ class UserModel {
 
         await DBService.query<OkPacket>(sql, [user.id, user.email, user.password]);
         return user.id;
+    }
+
+    public deleteAll = async (): Promise<void> => {
+        const sql = `DELETE
+                     FROM ${tableNames.Users}`;
+
+        await DBService.query<OkPacket>(sql);
     }
 }
 

@@ -1,0 +1,20 @@
+version: "3.3"
+services:
+  app:
+    build: .
+    ports:
+      - 5000:5000
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: production
+      DB_HOST: db
+  db:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: app
+      MYSQL_USER: dev
+      MYSQL_PASSWORD: dev

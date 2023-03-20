@@ -52,6 +52,13 @@ class ProductModel {
         await DBService.query<OkPacket>(sql, [id]);
         return id;
     }
+
+    public deleteAll = async (): Promise<void> => {
+        const sql = `DELETE
+                     FROM ${tableNames.Products}`;
+
+        await DBService.query<OkPacket>(sql);
+    }
 }
 
 export default ProductModel;
