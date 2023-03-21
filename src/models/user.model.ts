@@ -26,7 +26,7 @@ class UserModel {
         return await DBService.query<UserPacket[]>(sql, [...filterValues]);
     }
 
-    public find = async (params: object): Promise<User> => {
+    public find = async (params: object): Promise<User | undefined> => {
         const { filterSet, filterValues } = multipleFilterSet(params);
         const sql = `SELECT *
                      FROM ${tableNames.Users}

@@ -25,7 +25,7 @@ class ProductModel {
         return await DBService.query<ProductPacket[]>(sql, [...filterValues]);
     }
 
-    public find = async (params: object): Promise<Product> => {
+    public find = async (params: object): Promise<Product | undefined> => {
         const { filterSet, filterValues } = multipleFilterSet(params);
         const sql = `SELECT *
                      FROM ${tableNames.Products}

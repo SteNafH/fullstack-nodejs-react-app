@@ -24,7 +24,6 @@ const auth = () => {
                 });
 
             const token = authHeader.replace(bearer, '');
-
             const decoded = jwt.verify(token, Config.SECRET_JWT) as Token;
             const user = await userModel.find({ id: decoded.id });
 
