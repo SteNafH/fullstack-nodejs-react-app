@@ -83,7 +83,7 @@ To run the application, follow these steps:
     - `npm run start`
     - This command will build the production and then start it on your local machine.
 - To run the tests:
-  - `npm run tests`
+  - `npm run test`
   - This command will run all tests written in the `tests/` folder.
 
 

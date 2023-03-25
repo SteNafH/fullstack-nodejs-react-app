@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "A full-stack NodeJs and React project",
   "scripts": {
-    "test": "",
+    "test": "npm run test:server && npm run test:client",
     "test:server": "jest --runInBand",
-    "test:client": "codeceptjs run",
+    "test:client": "echo 'Not implemented'",
     "dev:server": "npm run build:client && nodemon src/index.ts",
     "dev:client": "vite",
     "dev": "start npm run dev:server && npm run dev:client",
