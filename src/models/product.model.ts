@@ -25,7 +25,7 @@ class ProductModel {
         return await DBService.query<ProductPacket[]>(sql, [...filterValues]);
     }
 
-    public find = async (params: object): Promise<Product> => {
+    public find = async (params: object): Promise<Product | undefined> => {
         const { filterSet, filterValues } = multipleFilterSet(params);
         const sql = `SELECT *
                      FROM ${tableNames.Products}
@@ -51,6 +51,13 @@ class ProductModel {
 
         await DBService.query<OkPacket>(sql, [id]);
         return id;
+    }
+
+    public deleteAll = async (): Promise<void> => {
+        const sql = `DELETE
+                     FROM ${tableNames.Products}`;
+
+        await DBService.query<OkPacket>(sql);
     }
 }
 

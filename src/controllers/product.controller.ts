@@ -11,7 +11,8 @@ class ProductController {
 
     public getAllProducts = async (req: Request, res: Response) => {
         const products = await this.productModel.findAll();
-        res.status(200).json({
+
+        return res.status(200).json({
             status: 'success',
             data: {
                 products: products,
@@ -21,12 +22,19 @@ class ProductController {
 
     public getProductById = async (req: Request, res: Response) => {
         const product = await this.productModel.find({ id: req.params.id });
-        res.status(200).json({
-            status: 'success',
-            data: {
-                product: product,
-            }
-        });
+
+        if (product)
+            return res.status(200).json({
+                status: 'success',
+                data: {
+                    product: product,
+                }
+            });
+        else
+            return res.status(404).json({
+                status: 'error',
+                message: 'Product not found'
+            });
     }
 
     public createProduct = async (req: Request, res: Response) => {
@@ -34,7 +42,8 @@ class ProductController {
         product.id = randomUUID();
 
         await this.productModel.create(product);
-        res.status(200).json({
+
+        return res.status(200).json({
             status: 'success',
             data: {
                 product: product,
@@ -44,7 +53,8 @@ class ProductController {
 
     public deleteProduct = async (req: Request, res: Response) => {
         await this.productModel.delete(req.params.id);
-        res.status(200).json({
+
+        return res.status(200).json({
             status: 'success',
             data: null,
         });

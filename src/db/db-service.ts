@@ -15,7 +15,7 @@ class DBService {
         });
     }
 
-    public checkConnection = () => {
+    public checkConnection = (): Promise<void> => {
         return new Promise<void>((resolve, reject) => {
             if (!this.dbInstance) {
                 reject('Database is not initialized');
@@ -38,25 +38,33 @@ class DBService {
         })
     }
 
-    public query = <T extends OkPacket | RowDataPacket[] | OkPacket[]>(sql: string, values?: any[]): Promise<T> => {
+    public query = <T extends OkPacket | RowDataPacket[]>(sql: string, values?: any[]): Promise<T> => {
         return new Promise<T>((resolve, reject) => {
-            if (!this.dbInstance) {
-                reject('Database not initialized');
-                return;
-            }
+            if (!this.dbInstance)
+                return reject('Database not initialized');
 
             const callback = (error: QueryError | null, result: T) => {
-                if (error) {
-                    reject(error);
-                    return;
-                }
+                if (error)
+                    return reject(error);
 
                 resolve(result);
             };
 
             this.dbInstance.query<T>(sql, values, callback);
         }).catch((err) => {
-            throw new InternalServerException('Query failed', err);
+            throw new InternalServerException('Query failed', sql);
+        });
+    }
+
+    public disconnect = (): Promise<boolean> => {
+        return new Promise<boolean>((resolve) => {
+            if (!this.dbInstance)
+                return resolve(false);
+
+            this.dbInstance.end(() => {
+                this.dbInstance = undefined;
+                resolve(true);
+            })
         });
     }
 }

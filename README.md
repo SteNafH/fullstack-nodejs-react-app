@@ -60,7 +60,7 @@ Here's a brief description of what each folder/file contains:
 - `src/models/`: Folder containing database models.
 - `src/routes/`: Folder containing the routes for the application.
 - `src/utils/`: Folder containing utility functions and classes.
-- `src/views`:  Folder containing files related to rendering views on the client-side.
+- `src/views/`:  Folder containing files related to rendering views on the client-side.
 
 ## Installation
 
@@ -82,6 +82,10 @@ To run the application, follow these steps:
 - To start the production server:
     - `npm run start`
     - This command will build the production and then start it on your local machine.
+- To run the tests:
+  - `npm run test`
+  - This command will run all tests written in the `tests/` folder.
+
 
 ## Configuration
 
