@@ -1,15 +1,20 @@
 version: "3.3"
 services:
   app:
-    build: .
+    image: node:18.14.0-alpine
+    working_dir: /app
+    volumes:
+      - .:/app
     ports:
       - 5001:5000
     depends_on:
       - db
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       DB_HOST: db
       DB_PORT: 3306
+    command: [ 'npm', 'run', 'dev:server' ]
+
   db:
     image: mysql
     ports:
@@ -21,3 +26,10 @@ services:
       MYSQL_PASSWORD: dev
     volumes:
       - /data/mysql:/var/lib/mysql
+
+  npm:
+    image: node:18.14.0-alpine
+    entrypoint: npm
+    working_dir: /app
+    volumes:
+      - .:/app

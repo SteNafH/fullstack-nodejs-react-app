@@ -1,5 +1,5 @@
-import DbService from '../db/db-service';
-import Config from '../configs/config';
+import DbService from '../db/db-service.js';
+import Config from '../configs/config.js';
 
 class DatabaseLoader {
     public static async init() {

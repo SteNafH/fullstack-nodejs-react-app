@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "legacyWatch": true,
+  "watch": ["src/"],
+  "ignore": [
+    "tests/",
+    "node_modules/"
+  ]
+}

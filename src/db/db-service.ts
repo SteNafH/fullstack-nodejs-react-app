@@ -1,6 +1,6 @@
 import mysql2, { OkPacket, Pool, QueryError, RowDataPacket } from 'mysql2';
-import { InternalServerException } from '../utils/exceptions/api.exception';
-import { ConnectionFailedException } from '../utils/exceptions/database.exception';
+import { InternalServerException } from '../utils/exceptions/api.exception.js';
+import { ConnectionFailedException } from '../utils/exceptions/database.exception.js';
 
 class DBService {
     private dbInstance?: Pool;

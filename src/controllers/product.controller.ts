@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import ProductModel, { Product } from '../models/product.model';
+import ProductModel, { Product } from '../models/product.model.js';
 import { randomUUID } from 'crypto';
 
 class ProductController {

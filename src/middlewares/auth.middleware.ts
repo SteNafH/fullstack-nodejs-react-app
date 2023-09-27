@@ -1,7 +1,7 @@
-import UserModel from '../models/user.model';
+import UserModel from '../models/user.model.js';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import Config from '../configs/config';
+import Config from '../configs/config.js';
 
 const userModel = new UserModel();
 

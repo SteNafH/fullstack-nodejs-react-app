@@ -1,5 +1,5 @@
-import Config from '../../configs/config';
-import ErrorStatusCodes from '../errorStatusCodes.utils';
+import Config from '../../configs/config.js';
+import ErrorStatusCodes from '../errorStatusCodes.utils.js';
 
 class ApiException extends Error {
     public name: string;

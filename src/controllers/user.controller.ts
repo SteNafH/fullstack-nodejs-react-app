@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import UserModel from '../models/user.model';
+import UserModel from '../models/user.model.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { randomUUID } from 'crypto';
-import Config from '../configs/config';
+import Config from '../configs/config.js';
 
 class UserController {
     private userModel: UserModel;

@@ -1,6 +1,6 @@
-import DBService from '../db/db-service';
-import tableNames from '../utils/tableNames.utils';
-import { multipleFilterSet } from '../utils/common.utils';
+import DBService from '../db/db-service.js';
+import tableNames from '../utils/tableNames.utils.js';
+import { multipleFilterSet } from '../utils/common.utils.js';
 import { OkPacket, RowDataPacket } from 'mysql2';
 
 export interface User {
