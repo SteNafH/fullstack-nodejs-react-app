@@ -3,11 +3,11 @@ import app from '../../src/index';
 import { NextFunction, Request, Response } from 'express';
 import ProductModel from '../../src/models/product.model';
 import { Product } from '../../src/models/product.model';
-import DatabaseLoader from '../../src/loaders/database.loader';
+import {describe, test, expect, beforeEach, afterEach, vi} from "vitest";
 
-jest.mock('../../src/middlewares/auth.middleware', () => ({
+vi.mock('../../src/middlewares/auth.middleware', () => ({
     __esModule: true,
-    default: jest.fn(() => {
+    default: vi.fn(() => {
         return async function (req: Request, res: Response, next: NextFunction) {
             next();
         }
@@ -17,10 +17,6 @@ jest.mock('../../src/middlewares/auth.middleware', () => ({
 describe('ProductController', () => {
     const productModel = new ProductModel();
     let productId: string;
-
-    afterAll(async () => {
-        await DatabaseLoader.disconnect();
-    });
 
     beforeEach(async () => {
         const product: Product = {

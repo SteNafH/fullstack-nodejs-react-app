@@ -2,22 +2,23 @@ import auth from '../../../src/middlewares/auth.middleware';
 import { Request, Response } from 'express';
 import UserModel from '../../../src/models/user.model';
 import jwt from 'jsonwebtoken';
+import {describe, test, expect, vi} from "vitest";
 
-jest.mock('../../../src/models/user.model');
-jest.mock('jsonwebtoken');
+vi.mock('../../../src/models/user.model');
+vi.mock('jsonwebtoken');
 
 describe('authMiddleware', () => {
     const mockRes = {
-        status: jest.fn(() => mockRes),
-        json: jest.fn(),
+        status: vi.fn(() => mockRes),
+        json: vi.fn(),
     } as unknown as Response;
 
     test('should return a 401 error if the authorization header is missing', async () => {
         const mockReq = {
             headers: {
             }
-        } as unknown as Request;
-        const mockNext = jest.fn();
+        } as Request;
+        const mockNext = vi.fn();
 
         await auth()(mockReq, mockRes, mockNext);
 
@@ -33,9 +34,9 @@ describe('authMiddleware', () => {
             headers: {
                 authorization: 'invalid_authorization',
             }
-        } as unknown as Request;
+        } as Request;
 
-        const mockNext = jest.fn();
+        const mockNext = vi.fn();
 
         await auth()(mockReq, mockRes, mockNext);
 
@@ -47,15 +48,15 @@ describe('authMiddleware', () => {
     });
 
     test('should return a 401 error if the token is invalid', async () => {
-        (jwt.verify as jest.Mock).mockImplementation(() => { throw 'error' });
+        vi.mocked(jwt.verify).mockImplementation(() => { throw 'error' });
 
         const mockReq = {
             headers: {
                 authorization: 'Bearer invalid_token',
             }
-        } as unknown as Request;
+        } as Request;
 
-        const mockNext = jest.fn();
+        const mockNext = vi.fn();
 
         await auth()(mockReq, mockRes, mockNext);
 
@@ -67,15 +68,15 @@ describe('authMiddleware', () => {
     });
 
     test('should call next if the token is valid and the user is found', async () => {
-        (jwt.verify as jest.Mock).mockImplementation(() => ({ id: '' }));
+        vi.mocked(jwt.verify).mockImplementation(() => ({ id: '' }));
         UserModel.prototype.find = async () => ({ id: '', email: '', password: '' });
 
         const mockReq = {
             headers: {
                 authorization: 'Bearer valid_token',
             }
-        } as unknown as Request;
-        const mockNext = jest.fn();
+        } as Request;
+        const mockNext = vi.fn();
 
         await auth()(mockReq, mockRes, mockNext);
 
@@ -83,15 +84,15 @@ describe('authMiddleware', () => {
     });
 
     test('should return a 401 error if the token is valid but the user is not found', async () => {
-        (jwt.verify as jest.Mock).mockImplementation(() => ({ id: '' }));
+        vi.mocked(jwt.verify).mockImplementation(() => ({ id: '' }));
         UserModel.prototype.find = async () => undefined;
 
         const mockReq = {
             headers: {
                 authorization: 'Bearer valid_token',
             }
-        } as unknown as Request;
-        const mockNext = jest.fn();
+        } as Request;
+        const mockNext = vi.fn();
 
         await auth()(mockReq, mockRes, mockNext);
 

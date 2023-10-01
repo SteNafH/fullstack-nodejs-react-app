@@ -7,11 +7,13 @@ COPY ./package-lock.json .
 
 RUN npm install
 
-COPY tsconfig.json .
+COPY ./tsconfig.json .
+COPY ./tsconfig.build.json .
 COPY ./src ./src
 COPY ./vite.config.ts .
 
 RUN npm run build
+RUN npm run strip
 
 FROM node:18.14.0-alpine
 

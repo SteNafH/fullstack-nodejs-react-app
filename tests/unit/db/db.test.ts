@@ -2,12 +2,11 @@ import DbService from '../../../src/db/db-service';
 import { ConnectionFailedException } from '../../../src/utils/exceptions/database.exception';
 import { InternalServerException } from '../../../src/utils/exceptions/api.exception';
 import Config from '../../../src/configs/config';
+import {describe, test, expect, afterEach} from "vitest";
+import DatabaseLoader from "../../../src/loaders/database.loader";
 
-afterEach(() => {
-    return new Promise((resolve) => {
-        DbService.disconnect()
-            .then(resolve);
-    });
+afterEach(async () => {
+    await DatabaseLoader.disconnect();
 });
 
 describe('Db', () => {

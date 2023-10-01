@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import UserModel from '../models/user.model.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { randomUUID } from 'crypto';
 import Config from '../configs/config.js';

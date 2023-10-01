@@ -1,20 +1,18 @@
-# Coverage reports
-coverage
-
-# API keys and secrets
-.env
-
-# Dependency directory
-node_modules
-
-# Editors
+# IDE setting directories
 .idea
-*.iml
+.vscode
 
-# OS metadata
-.DS_Store
-Thumbs.db
-
-# Ignore built ts files
+# Build directory
 dist
 
+# Dependency directories
+node_modules/
+
+# Vitest coverage
+coverage
+
+# Environmental variables
+.env
+
+# codecept tests outputs
+tests/functional/_output

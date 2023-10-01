@@ -74,8 +74,10 @@ To install the project, follow these steps:
 To run the application, follow these steps:
 
 - To run the development environment:
-    - `npm run dev`
-    - This command will start the development server and build the frontend with hot reloading enabled.
+    - `npm run dev:server`
+    - This command will start the development server and build the frontend.
+    - `npm run dev:client`
+    - This command will start the frontend development server.
 - To build the production version:
     - `npm run build`
     - This command will build the production version of the app, which will be output to the `dist/` folder.

@@ -1,16 +1,12 @@
 import request from 'supertest';
 import app from '../../src/index';
-import DatabaseLoader from '../../src/loaders/database.loader';
 import UserModel from '../../src/models/user.model';
 import { randomUUID } from 'crypto';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
+import {describe, test, expect, beforeEach} from "vitest";
 
 describe('UserController', () => {
     const userModel = new UserModel();
-
-    afterAll(async () => {
-        await DatabaseLoader.disconnect();
-    });
 
     beforeEach(async () => {
         await userModel.deleteAll(); // Clear user collection before each test
